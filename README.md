@@ -114,15 +114,24 @@ RAZORPAY_KEY=your_razorpay_key_id
 RAZORPAY_SECRET=your_razorpay_key_secret
 ```
 
-### 3. Update the frontend API base URL
+Use the included `.env.example` files in the project root and `server/` as a template.
 
-Confirm the backend URL in `src/services/apis.js`:
+Create a `.env` file at the project root with the following values to configure the frontend:
 
-```js
-const BASE_URL = "http://localhost:4000/api/v1";
+```env
+REACT_APP_BASE_URL=http://localhost:4000/api/v1
+REACT_APP_RAZORPAY_KEY=your_razorpay_key_id
 ```
 
-If your backend runs on a different host or port, update this value.
+### 3. Verify frontend environment settings
+
+The frontend now reads `REACT_APP_BASE_URL` from the project root `.env` file and falls back to `http://localhost:4000/api/v1`.
+
+If your backend runs on a different host or port, update the value in the root `.env` file:
+
+```env
+REACT_APP_BASE_URL=http://localhost:4000/api/v1
+```
 
 ### 4. Run the app
 
@@ -182,6 +191,7 @@ The backend exposes routes under `/api/v1`:
 ## 📝 Notes
 
 - Backend enforces role permissions for student, instructor, and admin routes.
+- The backend now includes an in-memory MongoDB fallback for local development if the configured remote database is unavailable.
 - In the current frontend, Razorpay may require moving public keys into environment variables for production.
 - Adding `.env.example` files would improve setup clarity.
 
